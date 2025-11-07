@@ -1,0 +1,461 @@
+/* Variables CSS - Design System */
+:root {
+    /* Couleurs */
+    --color-primary: #218094;
+    --color-primary-hover: #1d7480;
+    --color-primary-active: #1a6873;
+    --color-secondary: rgba(94, 82, 64, 0.12);
+    --color-secondary-hover: rgba(94, 82, 64, 0.2);
+    --color-success: #218094;
+    --color-error: #c0152f;
+    --color-warning: #a84b2f;
+    --color-info: #626c71;
+    
+    --color-background: #fcfcf9;
+    --color-surface: #fffffd;
+    --color-text: #134252;
+    --color-text-secondary: #626c71;
+    --color-border: rgba(94, 82, 64, 0.2);
+    
+    /* Typographie */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-sm: 12px;
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 24px;
+    
+    /* Espacements */
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-32: 32px;
+    
+    /* Bordures */
+    --radius-sm: 6px;
+    --radius-base: 8px;
+    --radius-lg: 12px;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #32b8ca;
+        --color-primary-hover: #29a6b2;
+        --color-background: #1f2121;
+        --color-surface: #262828;
+        --color-text: #f5f5f5;
+        --color-text-secondary: rgba(167, 169, 169, 0.7);
+        --color-border: rgba(119, 124, 124, 0.3);
+    }
+}
+
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) var(--space-16);
+    border: none;
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn--primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn--primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.btn--secondary {
+    background: var(--color-secondary);
+    color: var(--color-text);
+}
+
+.btn--secondary:hover {
+    background: var(--color-secondary-hover);
+}
+
+.btn--sm {
+    padding: var(--space-4) var(--space-12);
+    font-size: var(--font-size-sm);
+}
+
+.btn--full-width {
+    width: 100%;
+}
+
+/* Formulaires */
+.form-group {
+    margin-bottom: var(--space-16);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-8);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--space-8) var(--space-12);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background: var(--color-surface);
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* Page de connexion */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-20);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--space-32);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: var(--space-32);
+}
+
+.login-header h1 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-8);
+}
+
+.login-header p {
+    color: var(--color-text-secondary);
+}
+
+.login-form {
+    margin-bottom: var(--space-24);
+}
+
+.login-footer {
+    padding-top: var(--space-24);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.login-footer p {
+    margin-bottom: var(--space-4);
+}
+
+/* Application principale */
+.app-container {
+    min-height: 100vh;
+}
+
+.app-header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-16) 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-20);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-title {
+    font-size: var(--font-size-2xl);
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--space-16);
+    align-items: center;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+/* Main content */
+.app-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-32) var(--space-20);
+}
+
+/* Section titles */
+.section-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-20);
+}
+
+/* Dashboard summary */
+.dashboard-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-20);
+    margin-bottom: var(--space-32);
+}
+
+.summary-card {
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: var(--space-16);
+}
+
+.summary-icon {
+    font-size: var(--font-size-3xl);
+}
+
+.summary-content h3 {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: var(--space-4);
+}
+
+.summary-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+}
+
+/* Accounts section */
+.accounts-section {
+    margin-bottom: var(--space-32);
+}
+
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-20);
+}
+
+.account-card {
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-16);
+}
+
+.account-header h3 {
+    font-size: var(--font-size-lg);
+}
+
+.account-number {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.account-balance {
+    margin-bottom: var(--space-16);
+}
+
+.balance-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+.balance-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+}
+
+.account-footer {
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-border);
+}
+
+.account-iban {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+/* Operations section */
+.operations-section {
+    margin-bottom: var(--space-32);
+}
+
+.operations-tabs {
+    display: flex;
+    gap: var(--space-8);
+    margin-bottom: var(--space-20);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.tab-btn {
+    padding: var(--space-12) var(--space-20);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.operation-form {
+    max-width: 600px;
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Transactions section */
+.transactions-section {
+    margin-bottom: var(--space-32);
+}
+
+.transactions-list {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-16) var(--space-24);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-type {
+    font-weight: 500;
+    margin-bottom: var(--space-4);
+}
+
+.transaction-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+.transaction-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.transaction-amount {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+.transaction-amount.positive {
+    color: var(--color-success);
+}
+
+.transaction-amount.negative {
+    color: var(--color-error);
+}
+
+.empty-state {
+    padding: var(--space-24);
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .accounts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .operations-tabs {
+        overflow-x: auto;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-8);
+    }
+}
