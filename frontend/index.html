@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Banque Digital</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">🏦 Banque Digital</h1>
+                <div class="header-actions">
+                    <span id="userName" class="user-name"></span>
+                    <button id="logoutBtn" class="btn btn--secondary btn--sm">Déconnexion</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Summary Section -->
+            <section class="dashboard-summary">
+                <div class="summary-card">
+                    <div class="summary-icon">💰</div>
+                    <div class="summary-content">
+                        <h3>Solde Total</h3>
+                        <p id="totalBalance" class="summary-value">0,00 €</p>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-content">
+                        <h3>Revenus du mois</h3>
+                        <p id="monthlyIncome" class="summary-value">0,00 €</p>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">📉</div>
+                    <div class="summary-content">
+                        <h3>Dépenses du mois</h3>
+                        <p id="monthlyExpenses" class="summary-value">0,00 €</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section class="accounts-section">
+                <h2 class="section-title">Mes Comptes</h2>
+                <div id="accountsList" class="accounts-grid"></div>
+            </section>
+
+            <!-- Operations Section -->
+            <section class="operations-section">
+                <h2 class="section-title">Opérations</h2>
+                <div class="operations-tabs">
+                    <button class="tab-btn active" data-tab="deposit">Dépôt</button>
+                    <button class="tab-btn" data-tab="withdrawal">Retrait</button>
+                    <button class="tab-btn" data-tab="transfer">Virement</button>
+                    <button class="tab-btn" data-tab="payment">Paiement</button>
+                </div>
+
+                <!-- Dépôt Form -->
+                <div class="tab-content active" data-content="deposit">
+                    <form id="depositForm" class="operation-form">
+                        <div class="form-group">
+                            <label class="form-label">Compte</label>
+                            <select id="depositAccount" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant (€)</label>
+                            <input type="number" id="depositAmount" class="form-control" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <input type="text" id="depositDescription" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Effectuer le dépôt</button>
+                    </form>
+                </div>
+
+                <!-- Retrait Form -->
+                <div class="tab-content" data-content="withdrawal">
+                    <form id="withdrawalForm" class="operation-form">
+                        <div class="form-group">
+                            <label class="form-label">Compte</label>
+                            <select id="withdrawalAccount" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant (€)</label>
+                            <input type="number" id="withdrawalAmount" class="form-control" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <input type="text" id="withdrawalDescription" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Effectuer le retrait</button>
+                    </form>
+                </div>
+
+                <!-- Virement Form -->
+                <div class="tab-content" data-content="transfer">
+                    <form id="transferForm" class="operation-form">
+                        <div class="form-group">
+                            <label class="form-label">Compte source</label>
+                            <select id="transferSourceAccount" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">IBAN destinataire</label>
+                            <input type="text" id="transferRecipientIban" class="form-control" placeholder="FR76 1234 5678 9000..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nom du bénéficiaire</label>
+                            <input type="text" id="transferRecipientName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant (€)</label>
+                            <input type="number" id="transferAmount" class="form-control" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <input type="text" id="transferDescription" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Effectuer le virement</button>
+                    </form>
+                </div>
+
+                <!-- Paiement Form -->
+                <div class="tab-content" data-content="payment">
+                    <form id="paymentForm" class="operation-form">
+                        <div class="form-group">
+                            <label class="form-label">Compte</label>
+                            <select id="paymentAccount" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Marchand</label>
+                            <input type="text" id="paymentMerchant" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Montant (€)</label>
+                            <input type="number" id="paymentAmount" class="form-control" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Catégorie</label>
+                            <select id="paymentCategory" class="form-control" required>
+                                <option value="alimentation">Alimentation</option>
+                                <option value="logement">Logement</option>
+                                <option value="transport">Transport</option>
+                                <option value="loisirs">Loisirs</option>
+                                <option value="sante">Santé</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="services">Services</option>
+                                <option value="autres">Autres</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Effectuer le paiement</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section class="transactions-section">
+                <h2 class="section-title">Dernières Transactions</h2>
+                <div id="transactionsList" class="transactions-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
