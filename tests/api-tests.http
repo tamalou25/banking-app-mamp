@@ -1,0 +1,164 @@
+### Application Bancaire - Tests API
+### Utilisez l'extension REST Client dans VS Code
+
+# Variables
+@baseUrl = http://localhost:5000/api
+@token = eyJ0eXAiOiJKV1QiLCJhbGc...  # Remplacez avec votre token après connexion
+
+### Health Check
+GET {{baseUrl}}/health
+
+###
+
+### 1. Inscription d'un nouvel utilisateur
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "username": "testuser",
+  "password": "TestPassword123!",
+  "first_name": "Test",
+  "last_name": "User",
+  "phone_number": "+33612345678",
+  "date_of_birth": "1990-01-01",
+  "address": "123 Test Street, Paris"
+}
+
+###
+
+### 2. Connexion avec le compte de test
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jean.dupont@example.com",
+  "password": "TestPassword123!"
+}
+
+###
+
+### 3. Récupérer le profil utilisateur
+GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+
+###
+
+### 4. Lister tous les comptes
+GET {{baseUrl}}/accounts/
+Authorization: Bearer {{token}}
+
+###
+
+### 5. Récupérer le résumé des comptes
+GET {{baseUrl}}/accounts/summary
+Authorization: Bearer {{token}}
+
+###
+
+### 6. Lister les transactions (page 1, 10 par page)
+GET {{baseUrl}}/transactions/?page=1&per_page=10
+Authorization: Bearer {{token}}
+
+###
+
+### 7. Effectuer un dépôt
+POST {{baseUrl}}/transactions/deposit
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "account_id": 1,
+  "amount": 500.00,
+  "description": "Dépôt de test"
+}
+
+###
+
+### 8. Effectuer un retrait
+POST {{baseUrl}}/transactions/withdrawal
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "account_id": 1,
+  "amount": 50.00,
+  "description": "Retrait de test"
+}
+
+###
+
+### 9. Effectuer un virement
+POST {{baseUrl}}/transactions/transfer
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "source_account_id": 1,
+  "recipient_iban": "FR7612345678900000000002345",
+  "amount": 100.00,
+  "description": "Virement test vers épargne",
+  "recipient_name": "Compte Épargne"
+}
+
+###
+
+### 10. Effectuer un paiement
+POST {{baseUrl}}/transactions/payment
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "account_id": 1,
+  "merchant": "Amazon",
+  "amount": 29.99,
+  "category": "shopping"
+}
+
+###
+
+### 11. Changer le mot de passe
+POST {{baseUrl}}/auth/change-password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current_password": "TestPassword123!",
+  "new_password": "NewPassword456!"
+}
+
+###
+
+### 12. Récupérer les détails d'un compte spécifique
+GET {{baseUrl}}/accounts/1
+Authorization: Bearer {{token}}
+
+###
+
+### Test d'erreur: Solde insuffisant
+POST {{baseUrl}}/transactions/withdrawal
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "account_id": 1,
+  "amount": 999999.00,
+  "description": "Test solde insuffisant"
+}
+
+###
+
+### Test d'erreur: IBAN invalide
+POST {{baseUrl}}/transactions/transfer
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "source_account_id": 1,
+  "recipient_iban": "INVALID_IBAN",
+  "amount": 50.00,
+  "description": "Test IBAN invalide",
+  "recipient_name": "Test"
+}
+
+###
